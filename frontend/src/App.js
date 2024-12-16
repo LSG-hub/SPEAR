@@ -8,7 +8,8 @@ function App() {
   // State to manage the selected theme
   const [theme, setTheme] = useState("theme1");
   const [prompt, setPrompt] = useState(""); // State to handle user prompt
-  const [response, setResponse] = useState(""); // State to store GPT response
+  const [leftPanelResponse, setLeftPanelResponse] = useState(""); // State for Frontend response
+  const [rightPanelResponse, setRightPanelResponse] = useState(""); // State for Backend response
 
   // Theme combinations
   const themes = {
@@ -90,11 +91,16 @@ function App() {
       try {
         const response = await axios.post("http://localhost:5000/generate-code", { prompt });
         console.log("API Response:", response.data); // Debug the full response
-        setResponse(response.data.message); // Update GPT response
+
+        // Update LeftPanel and RightPanel responses
+        setLeftPanelResponse(response.data.leftPanelCode); // Frontend code
+        setRightPanelResponse(response.data.rightPanelCode); // Backend code
+
         setPrompt(""); // Clear the input box after submission
       } catch (error) {
         console.error("Error sending prompt:", error);
-        setResponse("An error occurred while fetching the response."); // Handle error gracefully
+        setLeftPanelResponse("An error occurred while fetching the frontend response.");
+        setRightPanelResponse("An error occurred while fetching the backend response.");
       }
     }
   };
@@ -154,8 +160,8 @@ function App() {
 
       {/* Main Container */}
       <div className="container">
-        <LeftPanel color={selectedTheme.leftPanel} response={response} />
-        <RightPanel color={selectedTheme.rightPanel} response={response} />
+        <LeftPanel color={selectedTheme.leftPanel} response={leftPanelResponse || "Frontend code will appear here..."} />
+        <RightPanel color={selectedTheme.rightPanel} response={rightPanelResponse || "Backend code will appear here..."} />
       </div>
     </div>
   );
