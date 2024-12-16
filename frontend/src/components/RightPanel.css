@@ -83,3 +83,24 @@
 .right-panel-content h2 {
     color: #388e3c;
 }
+
+.code-editor-container {
+    flex: 1;
+    width: 90%; /* Adjust the width to make it look like an island */
+    margin: 20px auto; /* Add top margin to leave space from header */
+    background-color: #2e3440; /* Dark background for the code editor */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for the island effect */
+    overflow-y: auto;
+    padding: 10px;
+}
+
+/* Code editor text */
+.code-editor {
+    font-family: "Courier New", Courier, monospace; /* Monospaced font */
+    font-size: 14px;
+    line-height: 1.5;
+    color: #d8dee9; /* Light text color */
+    white-space: pre-wrap; /* Preserve formatting */
+    word-wrap: break-word; /* Ensure long lines wrap */
+}
