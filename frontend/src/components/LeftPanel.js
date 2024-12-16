@@ -68,8 +68,10 @@ function LeftPanel({ color, response }) {
               onClick={handleFlip}
             />
           </div>
-          <div className="left-panel-content">
-            <p>{displayedText || "No Response Yet."}</p>
+          <div className="code-editor-container">
+            <pre className="code-editor">
+              <code>{displayedText || "No Response Yet."}</code>
+            </pre>
           </div>
         </div>
       </div>
